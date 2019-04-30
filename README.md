@@ -13,3 +13,6 @@ Installation:
 * pip install -r requirements.txt
 * Create a Red-bot (redbot-setup)
 * redbot (bot name e.g. afredbotdev) --dev
+
+
+(Testing webhook with a dummy commit)
