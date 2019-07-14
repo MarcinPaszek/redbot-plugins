@@ -217,6 +217,7 @@ _pkginfo.txt
 !?*.[Cc]ache/
 
 # Others
+tests.py
 ClientBin/
 ~$*
 *~
