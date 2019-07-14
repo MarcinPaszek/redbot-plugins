@@ -2,5 +2,7 @@ from .mycog import Mycog
 from .weather import Weather
 
 def setup(bot):
-    bot.add_cog(Mycog())
-    bot.add_cog(Weather())
+    n=Mycog(bot)
+    bot.add_cog(n)
+    m=Weather(bot)
+    bot.add_cog(m)

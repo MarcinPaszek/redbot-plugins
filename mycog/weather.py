@@ -7,7 +7,7 @@ import datetime
 from pytz import timezone
 
 class Weather(commands.Cog):
-    """My custom cog"""
+    """Weather cog"""
 
     @commands.command()
     async def weather(self, ctx, *, location):
