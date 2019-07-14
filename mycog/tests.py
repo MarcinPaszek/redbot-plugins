@@ -57,7 +57,7 @@ listoftupleForecasts=[]
 for i in range(numberOfForecasts):
     listoftupleForecasts.append((listForecastTimes[i],listTemperatureForecasts[i],listHumidityForecasts[i],listWeatherForecasts[i]))
 
-print(str(tupleWeather[0])+", Temperature: "+str(tupleWeather[1])+"°C, Humidity: "+str(tupleWeather[2])+"%, Weather: "+str(tupleWeather[3]))
+print(str(tupleWeather[0])+", Temperature: "+str(tupleWeather[1])+"ï¿½C, Humidity: "+str(tupleWeather[2])+"%, Weather: "+str(tupleWeather[3]))
 #print(listoftupleForecasts)
 for i in range(numberOfForecasts):
-    print(str(listoftupleForecasts[i][0])+", Temperature: "+str(listoftupleForecasts[i][1])+"°C, Humidity: "+str(listoftupleForecasts[i][2])+"%, Weather: "+str(listoftupleForecasts[i][3]))
+    print(str(listoftupleForecasts[i][0])+", Temperature: "+str(listoftupleForecasts[i][1])+"ï¿½C, Humidity: "+str(listoftupleForecasts[i][2])+"%, Weather: "+str(listoftupleForecasts[i][3]))

@@ -63,11 +63,7 @@ class Weather(commands.Cog):
         for i in range(numberOfForecasts):
             listoftupleForecasts.append((listForecastTimes[i],listTemperatureForecasts[i],listHumidityForecasts[i],listWeatherForecasts[i]))
         
-        print(str(tupleWeather[0])+", Temperature: "+str(tupleWeather[1])+"°C, Humidity: "+str(tupleWeather[2])+"%, Weather: "+str(tupleWeather[3]))
-        #print(listoftupleForecasts)
-        for i in range(numberOfForecasts):
-            print(str(listoftupleForecasts[i][0])+", Temperature: "+str(listoftupleForecasts[i][1])+"°C, Humidity: "+str(listoftupleForecasts[i][2])+"%, Weather: "+str(listoftupleForecasts[i][3]))
-        
         await ctx.send("Displaying weather for: "+location)
         await ctx.send(str(tupleWeather[0])+", Temperature: "+str(tupleWeather[1])+"°C, Humidity: "+str(tupleWeather[2])+"%, Weather: "+str(tupleWeather[3]))
-        await ctx.send(str(listoftupleForecasts[i][0])+", Temperature: "+str(listoftupleForecasts[i][1])+"°C, Humidity: "+str(listoftupleForecasts[i][2])+"%, Weather: "+str(listoftupleForecasts[i][3]))
+        for i in range(numberOfForecasts):
+            await ctx.send(str(listoftupleForecasts[i][0])+", Temperature: "+str(listoftupleForecasts[i][1])+"°C, Humidity: "+str(listoftupleForecasts[i][2])+"%, Weather: "+str(listoftupleForecasts[i][3]))
