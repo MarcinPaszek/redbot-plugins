@@ -12,7 +12,7 @@ class Weather(commands.Cog):
 
     @commands.command()
     async def weather(self, ctx, *, location):
-        weatherstations = json.load(codecs.open('myweather/citylist.json', 'r', 'utf-8-sig'))
+        weatherstations = json.load(codecs.open('citylist.json', 'r', 'utf-8-sig'))
         found=0
         for i in weatherstations:
             if i["name"] == location:
@@ -27,7 +27,7 @@ class Weather(commands.Cog):
             localTimeZone = datetime.datetime.now(datetime.timezone.utc).astimezone().tzinfo
             #
             numberOfForecasts=5
-            with open("myweather/apikey.json", "r") as read_file:
+            with open("apikey.json", "r") as read_file:
                 jsonkey = json.load(read_file)
                 api_key=jsonkey["api_key"]
 

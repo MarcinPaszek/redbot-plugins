@@ -1,8 +1,10 @@
 import json
 import time
 import codecs
+import inspect, os.path
+
 start_time = time.time()
-weatherstations = json.load(codecs.open('myweather/citylist.json', 'r', 'utf-8-sig'))
+weatherstations = json.load(codecs.open('citylist.json', 'r', 'utf-8-sig'))
 found=0
 for i in data:
     if i["name"] == "Zabrze":
@@ -15,6 +17,7 @@ else:
 elapsed_time = time.time() - start_time
 print(elapsed_time)
 
-with open("myweather/apikey.json", "r") as read_file:
+with open("apikey.json", "r") as read_file:
     jsonkey = json.load(read_file)
     api_key=jsonkey["api_key"]
+    print(api_key)
