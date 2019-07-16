@@ -21,10 +21,10 @@ class Weather(commands.Cog):
                 for i in weatherstations:
                     if i["name"] == location:
                         found+=1
+                        locationID=i["id"]
                 if(not found):
                     await ctx.send("Weather station not found")
-                else:
-                    locationID=i["id"]
+                    
         except FileNotFoundError:
             return await ctx.send('Could not find the requested file in '+file_path)
         #weatherstations = json.load(codecs.open('citylist.json', 'r', 'utf-8-sig'))
