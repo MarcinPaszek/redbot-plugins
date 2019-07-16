@@ -1,4 +1,5 @@
 from redbot.core import commands
+from redbot.core.data_manager import bundled_data_path
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import json
@@ -12,25 +13,36 @@ class Weather(commands.Cog):
 
     @commands.command()
     async def weather(self, ctx, *, location):
-        weatherstations = json.load(codecs.open('citylist.json', 'r', 'utf-8-sig'))
-        found=0
-        for i in weatherstations:
-            if i["name"] == location:
-                found+=1
-        if(not found):
-            await ctx.send("Weather station not found")
-        else:
-            locationID=i["id"]
+        async def inspection(self, ctx, name):
+            file_path = bundled_data_path(self) / 'citylist.json'
+            try:
+                weatherstations = json.load(codecs.open('citylist.json', 'r', 'utf-8-sig'))
+                found=0
+                for i in weatherstations:
+                    if i["name"] == location:
+                        found+=1
+                if(not found):
+                    await ctx.send("Weather station not found")
+                else:
+                    locationID=i["id"]
+            except FileNotFoundError:
+                return await ctx.send('Could not find the requested file')
+        #weatherstations = json.load(codecs.open('citylist.json', 'r', 'utf-8-sig'))
+
 
      # get date and time
             timeNow=datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
             localTimeZone = datetime.datetime.now(datetime.timezone.utc).astimezone().tzinfo
             #
             numberOfForecasts=5
-            with open("apikey.json", "r") as read_file:
-                jsonkey = json.load(read_file)
-                api_key=jsonkey["api_key"]
-
+            async def inspection(self, ctx, name):
+                file_path = bundled_data_path(self) / 'apikey.json'
+                try:
+                    with open("apikey.json", "r") as read_file:
+                        jsonkey = json.load(read_file)
+                        api_key=jsonkey["api_key"]
+                except FileNotFoundError:
+                    return await ctx.send('Could not find the requested file')
             baseurl='https://api.openweathermap.org/'
             weather_url='data/2.5/weather?id='+str(locationID)+'&appid='+api_key
             forecast_url='data/2.5/forecast?id='+str(locationID)+'&appid='+api_key

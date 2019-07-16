@@ -2,7 +2,7 @@ import json
 import time
 import codecs
 import inspect, os.path
-
+os.path.normpath(join(os.getcwd(), path))
 start_time = time.time()
 weatherstations = json.load(codecs.open('citylist.json', 'r', 'utf-8-sig'))
 found=0
