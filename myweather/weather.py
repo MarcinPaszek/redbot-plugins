@@ -15,17 +15,18 @@ class Weather(commands.Cog):
     async def weather(self, ctx, *, location):
         file_path = bundled_data_path(self) / 'citylist.json'
         try:
-            weatherstations = json.load(codecs.open('citylist.json', 'r', 'utf-8-sig'))
-            found=0
-            for i in weatherstations:
-                if i["name"] == location:
-                    found+=1
-            if(not found):
-                await ctx.send("Weather station not found")
-            else:
-                locationID=i["id"]
+            with file_path.open('rt', encoding='utf-8') as json_file:
+                weatherstations = json.load(json_file)
+                found=0
+                for i in weatherstations:
+                    if i["name"] == location:
+                        found+=1
+                if(not found):
+                    await ctx.send("Weather station not found")
+                else:
+                    locationID=i["id"]
         except FileNotFoundError:
-            return await ctx.send('Could not find the requested file')
+            return await ctx.send('Could not find the requested file in '+file_path)
         #weatherstations = json.load(codecs.open('citylist.json', 'r', 'utf-8-sig'))
 
 
@@ -36,11 +37,11 @@ class Weather(commands.Cog):
         numberOfForecasts=5 
         file_path = bundled_data_path(self) / 'apikey.json'
         try:
-            with open("apikey.json", "r") as read_file:
+            with file_path.open('rt') as read_file:
                 jsonkey = json.load(read_file)
                 api_key=jsonkey["api_key"]
         except FileNotFoundError:
-            return await ctx.send('Could not find the requested file')
+            return await ctx.send('Could not find the requested file in '+file_path)
         baseurl='https://api.openweathermap.org/'
         weather_url='data/2.5/weather?id='+str(locationID)+'&appid='+api_key
         forecast_url='data/2.5/forecast?id='+str(locationID)+'&appid='+api_key
